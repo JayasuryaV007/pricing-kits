@@ -100,6 +100,18 @@ const IframeComponent: React.FC<IframeComponentProps> = ({
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Load the template JS script
+    const script = document.createElement('script');
+    script.src = '/api/getTemplateScript';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  useEffect(() => {
     const iframe = iframeRef.current;
     const overlay = overlayRef.current;
     if (iframe && overlay) {
@@ -168,7 +180,7 @@ const IframeComponent: React.FC<IframeComponentProps> = ({
         <iframe
           ref={iframeRef}
           src={url}
-          className="w-full h-[100px] overflow-auto border-2"
+          className="w-full h-screen overflow-auto border-2"
           title="Content iframe"
           onScroll={handleIframeScroll}
         />
