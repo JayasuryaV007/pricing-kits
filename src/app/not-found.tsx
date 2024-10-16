@@ -15,14 +15,14 @@ export const metadata = {
 };
 
 const NotFoundPage = async () => {
-  const [i18n, data] = await loadData();
+  const [i18n] = await loadData();
 
   return (
     <I18nProvider lang={i18n.language}>
       <main>
         <Fonts />
 
-        <SiteHeaderSessionProvider data={data.session} />
+        <SiteHeaderSessionProvider />
 
         <div
           className={

@@ -17,88 +17,88 @@ interface DataType {
 }
 
 async function loadUserData() {
-  const client = getSupabaseServerComponentClient();
+  // const client = getSupabaseServerComponentClient();
 
   try {
-    const { data, error } = await client.auth.getSession();
+    //   const { data, error } = await client.auth.getSession();
 
-    // const insertUserData = {
-    //   user_id:data.session ? data.session.user.id : '',
-    //   email: data.session ? data.session.user.email : '',
-    // };
+    //   // const insertUserData = {
+    //   //   user_id:data.session ? data.session.user.id : '',
+    //   //   email: data.session ? data.session.user.email : '',
+    //   // };
 
-    // await client
-    // .from('users')
-    // .insert([insertUserData]);
-    let userID = data.session ? data.session.user.id : '';
+    //   // await client
+    //   // .from('users')
+    //   // .insert([insertUserData]);
+    //   let userID = data.session ? data.session.user.id : '';
 
-    if (userID) {
-      const { data: existingUser } = await client
-        .from('users')
-        .select()
-        .eq('user_id', userID)
-        .maybeSingle();
+    //   if (userID) {
+    //     const { data: existingUser } = await client
+    //       .from('users')
+    //       .select()
+    //       .eq('user_id', userID)
+    //       .maybeSingle();
 
-      if (!existingUser) {
-        const { data: data1, error } = await client.from('users').insert({
-          user_id: userID,
-          email: data.session?.user.email ?? '',
-          password_hash: '',
-        });
+    //     if (!existingUser) {
+    //       const { data: data1, error } = await client.from('users').insert({
+    //         user_id: userID,
+    //         email: data.session?.user.email ?? '',
+    //         password_hash: '',
+    //       });
 
-        const appConfigsData = {
-          slack_notification: false,
-          email_notification: false,
-          calendar_notification: false,
-          webhook_url: '',
-          event_title: null,
-          event_time: null,
-          created_by: data.session?.user.email ?? '',
-          updated_by: data.session?.user.email ?? '',
-          user_id: userID,
-        };
+    //       const appConfigsData = {
+    //         slack_notification: false,
+    //         email_notification: false,
+    //         calendar_notification: false,
+    //         webhook_url: '',
+    //         event_title: null,
+    //         event_time: null,
+    //         created_by: data.session?.user.email ?? '',
+    //         updated_by: data.session?.user.email ?? '',
+    //         user_id: userID,
+    //       };
 
-        const { data: existingData } = await client
-          .from('app_configs')
-          .select()
-          .eq('user_id', userID)
-          .maybeSingle();
+    //       const { data: existingData } = await client
+    //         .from('app_configs')
+    //         .select()
+    //         .eq('user_id', userID)
+    //         .maybeSingle();
 
-        if (!existingData) {
-          const { data: data2, error: error1 } = await client
-            .from('app_configs')
-            .insert(appConfigsData);
-        }
-      }
-    }
-    // } else {
-    //   throw new Error('Invalid User ID');
-    // }
+    //       if (!existingData) {
+    //         const { data: data2, error: error1 } = await client
+    //           .from('app_configs')
+    //           .insert(appConfigsData);
+    //       }
+    //     }
+    //   }
+    //   // } else {
+    //   //   throw new Error('Invalid User ID');
+    //   // }
 
-    if (error) {
-      throw new Error(error.message);
-    }
+    //   if (error) {
+    //     throw new Error(error.message);
+    //   }
 
-    if (!data.session || error) {
-      return emptyUserData();
-    }
+    //   if (!data.session || error) {
+    //     return emptyUserData();
+    //   }
 
-    const session = data.session;
-    const userId = session.user.id;
-    const userData = await getUserDataById(client, userId);
+    //   const session = data.session;
+    //   const userId = session.user.id;
+    //   const userData = await getUserDataById(client, userId);
     const language = await getLanguage();
 
     return {
-      session: {
-        auth: {
-          accessToken: session.access_token,
-          user: {
-            id: session.user.id,
-            email: session.user.email,
-          },
-        },
-        data: userData || undefined,
-      },
+      // session: {
+      //   auth: {
+      //     accessToken: session.access_token,
+      //     user: {
+      //       id: session.user.id,
+      //       email: session.user.email,
+      //     },
+      //   },
+      //   data: userData || undefined,
+      // },
       language,
     };
   } catch (e) {

@@ -9,15 +9,20 @@ import IfHasPermissions from '~/components/IfHasPermissions';
 import SubscriptionCard from './SubscriptionCard';
 import BillingPortalRedirectButton from './BillingRedirectButton';
 
-const Plans = ({ session }: { session: any }) => {
-  if (!session) {
+const Plans = () => {
+  const user = useUserSession();
+
+  if (!user) {
     return null;
   }
-  const customerId = session.auth.user.id;
-  const subscription = session.data?.subscription;
+
+  const customerId = user?.auth?.user._id;
+  const subscription = user.data?.subscription;
+
   if (!subscription) {
-    return <PlanSelectionForm customerId={customerId} user={session.data} />;
+    return <PlanSelectionForm customerId={customerId} user={user.data} />;
   }
+
   return (
     <div className={'flex flex-col space-y-4'}>
       <div>

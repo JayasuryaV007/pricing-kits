@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 async function PricingPage() {
-  const { session } = await loadUserData();
+  // const { session } = await loadUserData();
   return (
     <Container>
       <div className={'flex flex-col space-y-16 my-8'}>
@@ -26,7 +26,7 @@ async function PricingPage() {
 
         <PlansStatusAlertContainer />
 
-        <Plans session={session} />
+        <Plans />
       </div>
     </Container>
   );

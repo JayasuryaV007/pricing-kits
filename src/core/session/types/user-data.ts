@@ -1,4 +1,4 @@
-import { Database } from '~/database.types';
+// import { Database } from '~/database.types';
 
 /**
  * This interface represents the user record in the Database
@@ -8,7 +8,7 @@ import { Database } from '~/database.types';
 interface UserData {
   _id?: string;
   email?: string;
-  subscription?: Database['public']['Tables']['subscriptions']['Row'] | null;
+  subscription?: any | null;
 }
 
 export default UserData;

@@ -5,7 +5,7 @@ import Button from '~/core/ui/Button';
 import { TextFieldInput } from '~/core/ui/TextField';
 import IframeComponent from './IframeComponent';
 import Modal from '~/core/ui/Modal';
-import ModalComponent from '~/app/dashboard/components/Everypenny/ModalComponent';
+import ModalComponent from '~/app/dashboard/components/Common/ModalComponent';
 
 export interface ElementData {
   id: string;

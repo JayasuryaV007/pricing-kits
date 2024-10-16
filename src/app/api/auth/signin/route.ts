@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate JWT token
-    const token = generateToken(user);
+    const token = generateToken({ _id: user.id, email: user.email });
 
     // Don't send password back to client
     const userWithoutPassword = {

@@ -2,7 +2,18 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 
-export function generateToken(user: any): string {
+// Define the shape of the user payload
+interface UserPayload {
+  email: string;
+  _id: string;
+}
+
+// Define the shape of the token's sub property
+interface DecodedToken {
+  sub: UserPayload;
+}
+
+export function generateToken(user: UserPayload): string {
   return jwt.sign({ sub: user }, JWT_SECRET, { expiresIn: '7d' });
 }
 
@@ -17,17 +28,19 @@ export function verifyToken(token: string) {
 export function decodeToken(token: string | null) {
   try {
     if (token) {
-      const decoded = jwt.decode(token);
-      return {
-        accessToken: token,
-        user: {
-          email: decoded.sub.email,
-          _id: decoded.sub._id,
-        },
-      };
-    } else {
-      return null;
+      const decoded = jwt.decode(token) as DecodedToken | null;
+
+      if (decoded?.sub) {
+        return {
+          accessToken: token,
+          user: {
+            email: decoded.sub.email,
+            _id: decoded.sub._id,
+          },
+        };
+      }
     }
+    return null;
   } catch (error) {
     return null;
   }
