@@ -1,0 +1,10 @@
+{
+  "showHeaderComponent": true,
+  "showChartComponent": true,
+  "showCardComponent": true,
+  "showSearchComponent": true,
+  "showTableComponent": true,
+  "showSlackComponent": true,
+  "showCalendarComponent": true,
+  "showGmailComponent": true
+}
