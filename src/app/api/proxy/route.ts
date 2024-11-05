@@ -1,14 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { JSDOM } from 'jsdom';
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-  },
-};
-
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   let url = searchParams.get('url');
