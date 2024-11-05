@@ -1,12 +1,12 @@
 import React from 'react';
 import Container from '~/core/ui/Container';
-import StepOneComponent from './components/StepOne';
+import StepperComponent from './components/Stepper';
 
 const Page = async () => {
   return (
     <>
       <Container>
-        <StepOneComponent />
+        <StepperComponent />
       </Container>
     </>
   );

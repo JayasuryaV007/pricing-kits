@@ -1,199 +1,99 @@
-// import React, { useState, useEffect, useRef } from 'react';
-// import { ElementData } from './StepOne';
-// interface AssetData {
-//   [key: string]: any;
-// }
-
-// const IframeComponent = ({
-//   url,
-//   setButtonDisabled,
-//   setSelectedElement,
-// }: {
-//   url: string;
-//   setButtonDisabled: any;
-//   setSelectedElement: any;
-// }) => {
-//   const [assetData, setAssetData] = useState<AssetData | null>(null);
-//   const iframeRef = useRef<HTMLIFrameElement>(null);
-
-//   const handleOverlayClick = (e: any) => {
-//     console.log('object');
-//     if (iframeRef.current && iframeRef.current.contentDocument) {
-//       const iframeDocument = iframeRef.current.contentDocument;
-
-//       const iframeRect = iframeRef.current.getBoundingClientRect();
-
-//       const iframeX = e.clientX - iframeRect.left;
-//       const iframeY = e.clientY - iframeRect.top;
-
-//       const element = iframeDocument.elementFromPoint(iframeX, iframeY);
-
-//       if (element) {
-//         const elementData: ElementData = {
-//           id: element.id,
-//           className: element.className,
-//           tagName: element.tagName,
-//           text: element.innerHTML,
-//         };
-//         console.log(iframeX, iframeY, element.innerHTML);
-//         setSelectedElement(elementData);
-//         setButtonDisabled(false);
-//         fetchAssetData(elementData);
-//       }
-//     }
-//   };
-
-//   const fetchAssetData = async (elementData: ElementData) => {
-//     const response = await fetch('/api/getAssetData', {
-//       method: 'POST',
-//       headers: { 'Content-Type': 'application/json' },
-//       body: JSON.stringify(elementData),
-//     });
-//     const data: AssetData = await response.json();
-//     setAssetData(data);
-//   };
-
-//   return (
-//     <>
-//       <div className="flex h-screen">
-//         <div className="relative flex-grow">
-//           <iframe
-//             ref={iframeRef}
-//             src={url}
-//             className="w-full h-full border-2"
-//           />
-//           <p className="absolute inset-0 z-10 pointer-events-none" onClick={handleOverlayClick} />
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default IframeComponent;
-
 import React, { useState, useEffect, useRef } from 'react';
-
-interface ElementData {
-  id: string;
-  className: string;
-  tagName: string;
-  text: string;
-}
-
+import { ElementData } from './Stepper';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import Button from '~/core/ui/Button';
+import { toast } from 'react-toastify';
+import ModalComponent from '~/app/dashboard/components/Common/ModalComponent';
 interface AssetData {
   [key: string]: any;
 }
 
-interface IframeComponentProps {
-  url: string;
-  setButtonDisabled: React.Dispatch<React.SetStateAction<boolean>>;
-  setSelectedElement: React.Dispatch<React.SetStateAction<ElementData | null>>;
-}
-
-const IframeComponent: React.FC<IframeComponentProps> = ({
+const IframeComponent = ({
   url,
   setButtonDisabled,
   setSelectedElement,
+  setCurrentStep,
+  selectedElement,
+  projectId,
+}: {
+  url: string;
+  setButtonDisabled: any;
+  setSelectedElement: any;
+  setCurrentStep: any;
+  selectedElement: ElementData | null;
+  projectId: string;
 }) => {
   const [assetData, setAssetData] = useState<AssetData | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Load the template JS script
-    const script = document.createElement('script');
-    script.src = '/api/getTemplateScript';
-    script.async = true;
-    document.body.appendChild(script);
+    const handleMessage = (event: any) => {
+      if (event.data.type === 'ELEMENT_SELECTED') {
+        console.log('Selected selector:', event.data.selector);
+        addSelectedElement(event.data.selector);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
 
     return () => {
-      document.body.removeChild(script);
+      window.removeEventListener('message', handleMessage);
     };
   }, []);
 
-  useEffect(() => {
-    const iframe = iframeRef.current;
-    const overlay = overlayRef.current;
-    if (iframe && overlay) {
-      iframe.onload = () => {
-        iframe.style.height = `${iframe.contentWindow?.document.body.scrollHeight}px`;
-        overlay.style.height = iframe.style.height;
-      };
-    }
-  }, [url]);
-
-  const handleOverlayInteraction = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (iframeRef.current && iframeRef.current.contentDocument) {
-      const iframeDocument = iframeRef.current.contentDocument;
-      const iframeRect = iframeRef.current.getBoundingClientRect();
-
-      const iframeX = e.clientX - iframeRect.left;
-      const iframeY =
-        e.clientY - iframeRect.top + iframeRef.current.contentWindow!.scrollY;
-
-      const element = iframeDocument.elementFromPoint(
-        iframeX,
-        iframeY,
-      ) as HTMLElement;
-
-      if (element) {
-        const elementData: ElementData = {
-          id: element.id,
-          className: element.className,
-          tagName: element.tagName,
-          text: element.innerHTML,
-        };
-        console.log(iframeX, iframeY, element.innerHTML);
-        setSelectedElement(elementData);
-        setButtonDisabled(false);
-        fetchAssetData(elementData);
-      }
-    }
+  const addSelectedElement = (selector: string) => {
+    setSelectedElement(JSON.parse(selector));
+    setButtonDisabled(false);
   };
 
-  const handleIframeScroll = () => {
-    if (overlayRef.current && iframeRef.current) {
-      overlayRef.current.scrollTop = iframeRef.current.contentWindow!.scrollY;
+  const fetchAssetData = async (elementData: any) => {
+    if (!selectedElement) {
+      toast.error('Select one Word or sentence');
+      return;
     }
-  };
-
-  const fetchAssetData = async (elementData: ElementData) => {
-    try {
-      const response = await fetch('/api/getAssetData', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(elementData),
-      });
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data: AssetData = await response.json();
-      setAssetData(data);
-    } catch (error) {
-      console.error('Error fetching asset data:', error);
-    }
+    setIsOpen(true);
+    const response = await fetch('/api/getAssetData', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(elementData),
+    });
+    const data: AssetData = await response.json();
+    setAssetData(data);
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="relative flex-grow overflow-hidden">
-        <iframe
-          ref={iframeRef}
-          src={url}
-          className="w-full h-screen overflow-auto border-2"
-          title="Content iframe"
-          onScroll={handleIframeScroll}
-        />
-        <div
-          ref={overlayRef}
-          className="absolute inset-0 z-10 overflow-hidden pointer-events-none"
-          onClick={handleOverlayInteraction}
-          style={{ cursor: 'pointer' }}
-        >
-          <div className="w-full h-full pointer-events-auto" />
+    <>
+      <div className="flex h-full flex-col">
+        <div className="flex-grow relative">
+          <iframe
+            ref={iframeRef}
+            src={`/api/proxy?url=${encodeURIComponent(url)}`}
+            className="w-full h-full border-2"
+          />
+        </div>
+        <div className="flex justify-between mt-4">
+          <Button onClick={() => setCurrentStep(1)}>
+            <ChevronLeftIcon className="w-4 h-4" />
+            Back
+          </Button>
+          <Button onClick={() => fetchAssetData('')} variant="outlinePrimary">
+            Add Tooltip
+          </Button>
+          <Button onClick={() => setCurrentStep(3)}>
+            Next Step
+            <ChevronRightIcon className="w-4 h-4" />
+          </Button>
         </div>
       </div>
-    </div>
+      <ModalComponent
+        url={url}
+        selectedElement={selectedElement}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        projectId={projectId}
+      />
+    </>
   );
 };
 

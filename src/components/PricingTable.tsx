@@ -134,7 +134,7 @@ function PricingItem(
               className={classNames(
                 `rounded-md py-1 px-2 text-xs font-medium flex space-x-1`,
                 {
-                  ['text-primary-foreground bg-primary']: recommended,
+                  ['text-primary-foreground bg-secondary']: recommended,
                   ['bg-gray-50 text-gray-500 dark:text-gray-800']: !recommended,
                 },
               )}

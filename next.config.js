@@ -29,6 +29,11 @@ function getRemotePatterns() {
     });
   }
 
+  remotePatterns.push({
+    protocol: 'https',
+    hostname: 'priceflows-assets.blr1.digitaloceanspaces.com',
+  });
+
   return IS_PRODUCTION
     ? remotePatterns
     : [

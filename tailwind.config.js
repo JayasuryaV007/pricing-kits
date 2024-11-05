@@ -32,7 +32,7 @@ module.exports = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
+        background: colors.gray[50],
         foreground: 'hsl(var(--foreground))',
         dark: {
           ...colors.slate,
@@ -40,12 +40,12 @@ module.exports = {
           foreground: colors.slate[100],
         },
         primary: {
-          DEFAULT: colors.sky[600],
+          DEFAULT: '#007064',
           foreground: 'hsl(var(--primary-foreground))',
-          ...colors.sky,
+          // ...colors.sky,
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
+          DEFAULT: '#ff3500',
           foreground: 'hsl(var(--secondary-foreground))',
         },
         destructive: {

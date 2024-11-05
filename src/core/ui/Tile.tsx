@@ -19,8 +19,8 @@ const Tile: React.FCC & {
   return (
     <div
       className={
-        'flex flex-col space-y-3 rounded-lg border border-gray-200' +
-        ' dark:border-dark-700 bg-background p-5'
+        'flex flex-col space-y-3 rounded-lg border border-gray-200 shadow-md' +
+        ' dark:border-dark-700 bg-white p-5 cursor-pointer'
       }
     >
       {children}

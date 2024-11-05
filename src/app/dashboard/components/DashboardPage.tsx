@@ -2,12 +2,37 @@
 import AppHeader from './AppHeader';
 import Spinner from '~/core/ui/Spinner';
 import Button from '~/core/ui/Button';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import UserSessionContext from '~/core/session/contexts/user-session';
+import useFetchProductMutation from '~/core/hooks/use-fetch-products';
+import ProductContents from './ProductContents';
 
 const DashboardPage = ({}: {}) => {
   const router = useRouter();
+  const fetchProductMutation = useFetchProductMutation();
+  const { userSession } = useContext(UserSessionContext);
+  const [products, setProducts] = useState([]);
 
-  if (false) {
+  useEffect(() => {
+    if (!!userSession?.data) {
+      fetchProducts();
+    }
+  }, [userSession]);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetchProductMutation.trigger(
+        userSession?.data?._id || '',
+      );
+      setProducts(response.data);
+    } catch (error: any) {
+      toast.error(error.message);
+    }
+  };
+
+  if (fetchProductMutation.isMutating) {
     return (
       <div className="flex justify-center items-center h-screen">
         <Spinner />
@@ -21,27 +46,23 @@ const DashboardPage = ({}: {}) => {
         {' '}
         <AppHeader title="Pricing Kits"></AppHeader>
       </div>
-      <div className={'flex flex-col space-y-6 pb-8 max-w-7xl mx-auto mt-20'}>
-        <div className="my-4">
-          <span className="font-bold text-sky-800 text-lg mx-auto dark:text-white">
-            Dashboard
+      <div
+        className={'flex flex-col space-y-6 pb-8 max-w-7xl mx-auto md:mt-20'}
+      >
+        <div className="my-4 w-full flex items-center">
+          <span className="font-bold text-primary text-lg dark:text-white">
+            Enhanced Pricing Pages
           </span>{' '}
-        </div>
-        <div className="border border-gray-200 shadow-sm dark:border-dark-900 p-4">
-          <div className="flex w-full justify-between items-center">
-            <span className="font-semibold text-lg">Enhance Pricing Page</span>
+          <div className="ml-auto flex">
             <Button
-              className="font-semibold"
+              className="font-semibold ml-auto"
               onClick={() => router.push('/create-enhance')}
             >
               Create Enhance
             </Button>
           </div>
         </div>
-
-        <div className="text-center font-light pt-8">
-          No Enhancements added Yet - Time to Create Something New!
-        </div>
+        <ProductContents products={products} />
       </div>
     </>
   );

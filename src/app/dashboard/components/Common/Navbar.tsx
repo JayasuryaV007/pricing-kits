@@ -8,7 +8,7 @@ const Navbar = ({ children }: React.PropsWithChildren) => {
       <div className="border-b border-gray-200 shadow-sm dark:border-dark-900 fixed z-50 w-full bg-white dark:bg-black">
         <Container>
           <div className="max-w-7xl mx-auto">
-            <div className="flex gap-4 py-4 items-center">
+            <div className="flex gap-4 items-center py-4">
               {children}
             </div>
           </div>

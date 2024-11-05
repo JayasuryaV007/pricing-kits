@@ -27,15 +27,15 @@ const TooltipContent = React.forwardRef<
            data-[side=top]:slide-in-from-bottom-1
            data-[side=left]:slide-in-from-right-1
            data-[side=right]:slide-in-from-left-1 z-50 overflow-hidden
-           rounded-md bg-dark-900/80 px-3 py-1.5 text-xs text-gray-100
-           shadow-md dark:bg-dark-700/90`,
+           rounded-md bg-white px-3 py-1.5 text-xs text-gray-900 font-semibold
+           shadow-lg dark:bg-dark-700/90 dark:text-white`,
         className,
       )}
       {...props}
     >
       {children}
       <TooltipPrimitive.Arrow
-        className={'fill-dark-900/80 dark:fill-dark-700/90'}
+        className={'fill-white dark:fill-dark-700/90'}
       />
     </TooltipPrimitive.Content>
   </TooltipPrimitive.Portal>

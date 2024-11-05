@@ -18,6 +18,7 @@ import useSignOut from '~/core/hooks/use-sign-out';
 
 import AppSidebarNavigation from './AppSidebarNavigation';
 import Navbar from './Common/Navbar';
+import Image from 'next/image';
 
 const AppSidebar: React.FC<{
   userId: string;
@@ -27,9 +28,12 @@ const AppSidebar: React.FC<{
   return (
     <Navbar>
       <div className={'my-0 flex-grow'}>
-        <span className="font-bold text-sky-800 text-lg mx-auto dark:text-white">
-          Pricing Kits
-        </span>{' '}
+        <Image
+          src="/assets/images/logo.png"
+          width={175}
+          height={175}
+          alt="Logo"
+        />
       </div>
 
       <div className={`flex gap-6 mx-auto flex-grow`}>
@@ -113,7 +117,7 @@ function ProfileDropdownContainer(props: { collapsed: boolean }) {
         signOutRequested={signOut}
       />
 
-      <AppSidebarFooterMenu />
+      {/* <AppSidebarFooterMenu /> */}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import AddTooltip from '~/app/create-enhance/components/AddTooltip';
-import { ElementData } from '~/app/create-enhance/components/StepOne';
+import { ElementData } from '~/app/create-enhance/components/Stepper';
 import Modal from '~/core/ui/Modal';
 
 interface DataType {
@@ -22,18 +22,23 @@ const ModalComponent = ({
   isOpen,
   setIsOpen,
   selectedElement,
+  url,
+  projectId,
 }: {
   isOpen: boolean;
   setIsOpen: any;
   selectedElement: ElementData | null;
+  url: string;
+  projectId: string;
 }) => {
   return (
     <>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} heading="Add Tooltip">
-        {/* <div className='font-medium text-lg'>{selectedElement?.text}</div> */}
         <AddTooltip
+          url={url}
           selectedElement={selectedElement}
           closeModal={() => setIsOpen(false)}
+          projectId={projectId}
         />
       </Modal>
     </>
