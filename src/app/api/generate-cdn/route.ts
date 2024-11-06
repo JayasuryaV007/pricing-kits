@@ -61,7 +61,6 @@ function generateScriptTemplate(tooltips: any[], metadata: any): string {
           const styles = \`
             .modern-tooltip-trigger {
               position: relative;
-              display: inline-block;
               cursor: pointer;
             }
     
@@ -76,9 +75,9 @@ function generateScriptTemplate(tooltips: any[], metadata: any): string {
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
               opacity: 0;
               transition: all 0.2s ease;
-              left: 100%;
+              left: 50%;
               transform: translateX(-50%) translateY(8px);
-              top: 50%;
+              top: 100%;
             }
     
             .modern-tooltip-trigger:hover .modern-tooltip-content {
@@ -239,49 +238,14 @@ function generateScriptTemplate(tooltips: any[], metadata: any): string {
                   content.style.display = ''; // Remove display none after hydration
                 });      
   
-            function updateTooltipPosition() {
-              const rect = targetElement.getBoundingClientRect();
-              const tooltipRect = content.getBoundingClientRect();
-              const viewportWidth = window.innerWidth;
-              
-              if (rect.left + tooltipRect.width/2 > viewportWidth) {
-                content.style.left = 'auto';
-                content.style.right = '0';
-                content.style.transform = 'translateY(8px)';
-                arrow.style.left = 'auto';
-                arrow.style.right = '20px';
-              } else if (rect.left - tooltipRect.width/2 < 0) {
-                content.style.left = '0';
-                content.style.right = 'auto';
-                content.style.transform = 'translateY(8px)';
-                arrow.style.left = '20px';
-                arrow.style.right = 'auto';
-              } else {
-                // Reset to default center position
-                content.style.left = '50%';
-                content.style.right = 'auto';
-                content.style.transform = 'translateX(-50%) translateY(8px)';
-                arrow.style.left = '50%';
-                arrow.style.right = 'auto';
-                arrow.style.transform = 'translateX(-50%) rotate(45deg)';
-              }
-            }
-  
-            // Event listeners
-            targetElement.addEventListener('mouseenter', updateTooltipPosition);
-            window.addEventListener('resize', updateTooltipPosition);
           });
         }
-  
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initTooltips);
-        } else {
-          initTooltips();
+
+        if (typeof window !== 'undefined') {
+          window.addEventListener('load', () => {
+            setTimeout(initTooltipsContent, 100);
+          });
         }
-  
-        const observer = new MutationObserver((mutations) => {
-          initTooltipsContent();
-        });
   
       })();
     `;
