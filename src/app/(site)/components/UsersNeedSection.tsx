@@ -13,7 +13,7 @@ function UsersNeedSection() {
         <div className="grid grid-cols-1 mt-10 text-center border border-gray-200 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           <div className="relative transition-all duration-300 bg-white hover:shadow-xl hover:z-10">
             <div className="px-4 py-8">
-              <div className="inline-flex items-center justify-center w-12 h-12 mx-auto bg-gray-400 rounded-full">
+              <div className="inline-flex items-center justify-center w-12 h-12 mx-auto bg-primary rounded-full">
                 <svg
                   className="w-6 h-6 text-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ function UsersNeedSection() {
                   />
                 </svg>
               </div>
-              <h3 className="text-base font-bold text-gray-900 mt-7">
+              <h3 className="text-base font-bold text-primary mt-7">
                 Higher User Engagement
               </h3>
               <p className="mt-3 text-sm text-gray-600">
@@ -42,7 +42,7 @@ function UsersNeedSection() {
 
           <div className="relative transition-all duration-300 bg-white border-t border-gray-200 sm:border-t-0 sm:border-l hover:shadow-xl hover:z-10">
             <div className="px-4 py-8">
-              <div className="inline-flex items-center justify-center w-12 h-12 mx-auto bg-gray-400 rounded-full">
+              <div className="inline-flex items-center justify-center w-12 h-12 mx-auto bg-primary rounded-full">
                 <svg
                   className="w-6 h-6 text-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ function UsersNeedSection() {
                   />
                 </svg>
               </div>
-              <h3 className="text-base font-bold text-gray-900 mt-7">
+              <h3 className="text-base font-bold text-primary mt-7">
                 Increased Conversions
               </h3>
               <p className="mt-3 text-sm text-gray-600">
@@ -70,7 +70,7 @@ function UsersNeedSection() {
 
           <div className="relative transition-all duration-300 bg-white border-t border-gray-200 lg:border-l lg:border-t-0 hover:shadow-xl hover:z-10">
             <div className="px-4 py-8">
-              <div className="inline-flex items-center justify-center w-12 h-12 mx-auto bg-gray-400 rounded-full">
+              <div className="inline-flex items-center justify-center w-12 h-12 mx-auto bg-primary rounded-full">
                 <svg
                   className="w-6 h-6 text-white"
                   xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +86,7 @@ function UsersNeedSection() {
                   />
                 </svg>
               </div>
-              <h3 className="text-base font-bold text-gray-900 mt-7">
+              <h3 className="text-base font-bold text-primary mt-7">
                 Flexible Design
               </h3>
               <p className="mt-3 text-sm text-gray-600">

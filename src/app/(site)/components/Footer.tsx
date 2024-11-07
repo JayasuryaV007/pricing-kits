@@ -1,110 +1,10 @@
-import Link from 'next/link';
-
-import Container from '~/core/ui/Container';
-import LogoImage from '~/core/ui/Logo/LogoImage';
-import configuration from '~/configuration';
-import NewsletterSignup from './NewsletterSignup';
 import Logo from '~/core/ui/Logo';
+import { TextFieldInput, TextFieldLabel } from '~/core/ui/TextField';
 
 const YEAR = new Date().getFullYear();
 
 function Footer() {
   return (
-    // <footer classNameName={'py-8 lg:py-24'}>
-    //   <Container>
-    //     <div classNameName={'flex flex-col space-y-8 lg:flex-row lg:space-y-0'}>
-    //       <div
-    //         classNameName={
-    //           'flex w-full space-x-2 lg:w-4/12 xl:w-3/12' +
-    //           ' xl:space-x-6 2xl:space-x-8'
-    //         }
-    //       >
-    //         <div classNameName={'flex flex-col space-y-4'}>
-    //           <div>
-    //             <LogoImage classNameName={'w-[85px] md:w-[115px]'} />
-    //           </div>
-
-    //           <div>
-    //             <p classNameName={'text-sm text-gray-500 dark:text-gray-400'}>
-    //               Add a short tagline about your product
-    //             </p>
-    //           </div>
-
-    //           <div classNameName={'flex text-xs text-gray-500 dark:text-gray-400'}>
-    //             <p>
-    //               © Copyright {YEAR} {configuration.site.siteName}. All Rights
-    //               Reserved.
-    //             </p>
-    //           </div>
-    //         </div>
-    //       </div>
-
-    //       <div
-    //         classNameName={
-    //           'flex flex-col space-y-8 lg:space-y-0 lg:space-x-6' +
-    //           ' xl:space-x-16 2xl:space-x-20' +
-    //           ' w-full lg:flex-row lg:justify-end'
-    //         }
-    //       >
-    //         <div>
-    //           <div classNameName={'flex flex-col space-y-4'}>
-    //             <FooterSectionHeading>About</FooterSectionHeading>
-
-    //             <FooterSectionList>
-    //               <FooterLink>
-    //                 <Link href={'#'}>Who we are</Link>
-    //               </FooterLink>
-    //               <FooterLink>
-    //                 <Link href={'/blog'}>Blog</Link>
-    //               </FooterLink>
-    //               <FooterLink>
-    //                 <Link href={'/contact'}>Contact</Link>
-    //               </FooterLink>
-    //             </FooterSectionList>
-    //           </div>
-    //         </div>
-
-    //         <div>
-    //           <div classNameName={'flex flex-col space-y-4'}>
-    //             <FooterSectionHeading>Product</FooterSectionHeading>
-
-    //             <FooterSectionList>
-    //               <FooterLink>
-    //                 <Link href={'/docs'}>Documentation</Link>
-    //               </FooterLink>
-    //               <FooterLink>
-    //                 <Link href={'#'}>Help Center</Link>
-    //               </FooterLink>
-    //               <FooterLink>
-    //                 <Link href={'#'}>Changelog</Link>
-    //               </FooterLink>
-    //             </FooterSectionList>
-    //           </div>
-    //         </div>
-
-    //         <div>
-    //           <div classNameName={'flex flex-col space-y-4'}>
-    //             <FooterSectionHeading>Legal</FooterSectionHeading>
-
-    //             <FooterSectionList>
-    //               <FooterLink>
-    //                 <Link href={'#'}>Terms of Service</Link>
-    //               </FooterLink>
-    //               <FooterLink>
-    //                 <Link href={'#'}>Privacy Policy</Link>
-    //               </FooterLink>
-    //               <FooterLink>
-    //                 <Link href={'#'}>Cookie Policy</Link>
-    //               </FooterLink>
-    //             </FooterSectionList>
-    //           </div>
-    //         </div>
-
-    //         <NewsletterSignup />
-    //       </div>
-    //     </div>
-    //   </Container>
-    // </footer>
     <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
@@ -121,7 +21,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  className="flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
                 >
                   <svg
                     className="w-4 h-4"
@@ -138,7 +38,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  className="flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
                 >
                   <svg
                     className="w-4 h-4"
@@ -155,7 +55,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  className="flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
                 >
                   <svg
                     className="w-4 h-4"
@@ -174,7 +74,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-gray-800 rounded-full w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
+                  className="flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
                 >
                   <svg
                     className="w-4 h-4"
@@ -203,7 +103,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   About{' '}
@@ -214,7 +114,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Features{' '}
@@ -225,7 +125,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Works{' '}
@@ -236,7 +136,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Career{' '}
@@ -255,7 +155,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Customer Support{' '}
@@ -266,7 +166,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Delivery Details{' '}
@@ -277,7 +177,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Terms & Conditions{' '}
@@ -288,7 +188,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Privacy Policy{' '}
@@ -304,21 +204,20 @@ function Footer() {
 
             <form action="#" method="POST" className="mt-6">
               <div>
-                <label htmlFor="email" className="sr-only">
+                <TextFieldLabel>
                   Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
-                />
+                  <TextFieldInput
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter your email"
+                  />
+                </TextFieldLabel>
               </div>
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center px-6 py-4 mt-3 font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700"
+                className="inline-flex items-center justify-center px-6 py-4 mt-6 font-semibold text-white transition-all duration-200 bg-primary rounded-md hover:bg-primary/80 focus:bg-primary/80"
               >
                 Subscribe
               </button>
@@ -329,39 +228,10 @@ function Footer() {
         <hr className="mt-16 mb-10 border-gray-200" />
 
         <p className="text-sm text-center text-gray-600">
-          © Copyright 2021, All Rights Reserved by Postcraft
+          © Copyright 2024, All Rights Reserved by PricingFlows
         </p>
       </div>
     </section>
-  );
-}
-
-function FooterSectionHeading(props: React.PropsWithChildren) {
-  return (
-    <p>
-      <span className={'font-semibold'}>{props.children}</span>
-    </p>
-  );
-}
-
-function FooterSectionList(props: React.PropsWithChildren) {
-  return (
-    <ul className={'flex flex-col space-y-4 text-gray-500 dark:text-gray-400'}>
-      {props.children}
-    </ul>
-  );
-}
-
-function FooterLink(props: React.PropsWithChildren) {
-  return (
-    <li
-      className={
-        'text-sm [&>a]:transition-colors [&>a]:hover:text-gray-800' +
-        ' dark:[&>a]:hover:text-white'
-      }
-    >
-      {props.children}
-    </li>
   );
 }
 

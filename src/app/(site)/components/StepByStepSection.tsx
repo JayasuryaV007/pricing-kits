@@ -69,11 +69,11 @@ function StepItem({ step, index, isLastStep }: any) {
         </div>
         <div className="relative pb-10 step step-hidden">
           <div className="flex items-start">
-            <div className="relative inline-flex items-center justify-center flex-shrink-0 text-2xl font-bold text-indigo-700 bg-indigo-300 w-14 h-14 rounded-xl">
+            <div className="relative inline-flex items-center justify-center flex-shrink-0 text-2xl font-bold text-white bg-primary w-14 h-14 rounded-xl">
               {index + 1}
               {!isLastStep && (
                 <span
-                  className="absolute w-1 h-[30vh] -ml-px bg-indigo-500 top-14 left-7"
+                  className="absolute w-1 h-[30vh] -ml-px bg-primary top-14 left-7"
                   aria-hidden="true"
                 ></span>
               )}
