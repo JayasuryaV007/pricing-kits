@@ -28,10 +28,10 @@ const links = {
   //   label: 'Images',
   //   path: '/images',
   // },
-  Pricing: {
-    label: 'Pricing',
-    path: '/pricing',
-  },
+  // Pricing: {
+  //   label: 'Pricing',
+  //   path: '/pricing',
+  // },
   // FAQ: {
   //   label: 'FAQ',
   //   path: '/faq',
@@ -52,7 +52,7 @@ const SiteNavigation = () => {
 
           {/* <NavigationMenuItem className={className} link={links.Blog} /> */}
           {/* <NavigationMenuItem className={className} link={links.Images} /> */}
-          <NavigationMenuItem className={className} link={links.Pricing} />
+          {/* <NavigationMenuItem className={className} link={links.Pricing} /> */}
           {/* <NavigationMenuItem className={className} link={links.FAQ} /> */}
         </NavigationMenu>
       </div>

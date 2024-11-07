@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import LogoImage from './LogoImage';
+import Image from 'next/image';
 
 const Logo: React.FCC<{
   href?: string;
@@ -8,8 +9,12 @@ const Logo: React.FCC<{
 }> = ({ href, label, className }) => {
   return (
     <Link aria-label={label ?? 'Home Page'} href={href ?? '/'}>
-      {/* <LogoImage className={className} /> */}
-      <span className='font-bold text-sky-800 text-lg'>Pricing Kits</span>
+      <Image
+        src="/assets/images/logo.png"
+        width={175}
+        height={175}
+        alt="Logo"
+      />
     </Link>
   );
 };
