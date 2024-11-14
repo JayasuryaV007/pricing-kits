@@ -27,7 +27,7 @@ function Home() {
       <FeatureSection />
       <PricingSection />
       <UsersNeedSection />
-      <CTASection />
+      {/* <CTASection /> */}
       <PricingInfoSection />
     </>
   );

@@ -1,9 +1,13 @@
 const HeroSection = () => {
   return (
-    <div className="overflow-x-hidden bg-gray-50">
+    <div className="overflow-x-hidden bg-white">
       <section className="relative py-12 sm:py-16 lg:pt-20 xl:pb-24">
         <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="inline-flex px-4 py-2 text-base text-gray-900 border border-gray-200 rounded-full font-pj">
+              Simplifying Pricing for Better Conversions
+            </p>
+
             <h1 className="mt-5 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">
               Drive Conversions with Feature-Rich Pricing
             </h1>
@@ -13,7 +17,7 @@ const HeroSection = () => {
             </p>
 
             <div className="relative inline-flex mt-10 md:mb-0 group">
-              <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+              <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
               <a
                 href="#"
                 title=""
@@ -26,13 +30,13 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* <div className="mt-16 md:mt-20">
+        <div className="mt-16 md:mt-20">
           <img
-            className="object-cover object-top w-full h-auto mx-auto scale-150 2xl:max-w-screen-2xl xl:scale-100"
-            src="https://d33wubrfki0l68.cloudfront.net/54780decfb9574945bc873b582cdc6156144a2ba/d9fa1/images/hero/4/illustration.png"
+            className="object-cover object-top w-3/5 h-auto mx-auto scale-150 2xl:max-w-screen-2xl xl:scale-100"
+            src="/assets/images/hero.png"
             alt=""
           />
-        </div> */}
+        </div>
       </section>
     </div>
   );

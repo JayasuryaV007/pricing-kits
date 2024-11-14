@@ -4,20 +4,20 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect, useRef, useState } from 'react';
 
 const OurProcessSteps = [
-  'Simplify integration',
   'Customize Tooltip Content',
-  'Activate Hover-Based Tooltips',
   'Incorporate Interactive Media',
   'Empower Users to "Learn More"',
+  'Simplify integration',
+  'Activate Hover-Based Tooltips',
   'Manage Content Seamlessly',
 ];
 
 const OurProcessSteps2 = [
-  'Min.js or CDN scripts can be directly linked to the HTML of your pricing page for easy setup.',
   'Tooltip details such as text, GIFs, videos, and blog/article links can be easily customized for each feature with a simple configuration file or CMS.',
-  'Tooltips fade in when users hover over a feature, displaying the configured content to keep users informed.',
   'Your users can watch videos or view GIFs directly within the tooltip for quick, in-context understanding.',
   'Your users can click the "Learn / Read More" button to be directed to blogs, e-books, etc., in case they need more information.',
+  'Min.js or CDN scripts can be directly linked to the HTML of your pricing page for easy setup.',
+  'Tooltips fade in when users hover over a feature, displaying the configured content to keep users informed.',
   'Your content manager can easily update tooltip details and links, keeping information to be accurate and contextual.',
 ];
 

@@ -101,7 +101,7 @@ function CdnForm({ formData, setCurrentStep, handleReviewSubmit }: any) {
           </div>
         </div>
       </div>
-      <div className="md:w-96 mx-auto flex w-full">
+      <div className="md:w-4/5 mx-auto flex w-full">
         <TextFieldInput className="bg-white " value={cdnURL} />
         {cdnURL ? (
           <Button
@@ -121,6 +121,7 @@ function CdnForm({ formData, setCurrentStep, handleReviewSubmit }: any) {
         )}
       </div>
       <div className="h-full border md:w-96 mx-auto flex flex-col gap-4 p-4">
+        <span className='font-bold text-center'>Added Enhancements</span>
         {tooltips.length > 0 ? (
           <>
             {tooltips.map((tooltip: any) => (

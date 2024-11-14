@@ -2,13 +2,13 @@ import React from 'react';
 
 function PricingDetailsSection() {
   return (
-    <section className="py-12 bg-white sm:py-16 lg:py-20 xl:py-20">
+    <section className="py-12 bg-gray-800 sm:py-16 lg:py-20 xl:py-20">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-base font-semibold text-primary">
+        <div className="max-w-5xl mx-auto md:text-left text-center md:flex md:gap-64">
+          <div className="font-bold text-primary md:w-96 text-4xl">
             Ineffective Pricing Details Hurt Sales
-          </p>
-          <h2 className="mt-6 text-2xl font-medium tracking-tight text-gray-900 lg:mt-8 sm:text-3xl lg:text-4xl">
+          </div>
+          <h2 className="mt-6 md:mt-0 ml-auto text-2xl font-normal tracking-tight text-white sm:text-3xl lg:text-xl md:w-[26rem]">
             Do your users struggle to understand the features and benefits of
             each pricing tier PricingFlows clears up the confusion. We break
             down each feature in an easy-to-understand way, empowering your
