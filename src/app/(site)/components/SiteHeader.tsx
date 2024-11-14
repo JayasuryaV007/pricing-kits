@@ -36,6 +36,7 @@ const SiteHeader = () => {
           <div className={'items-center flex'}>
             <If condition={canSwitchTheme}>
               {/* <DarkModeToggle /> */}
+              <></>
             </If>
           </div>
 
