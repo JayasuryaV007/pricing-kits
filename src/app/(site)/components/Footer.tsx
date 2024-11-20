@@ -24,7 +24,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
+                  className="cursor-not-allowed pointer-events-none flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
                 >
                   <svg
                     className="w-4 h-4"
@@ -40,7 +40,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
+                  className="cursor-not-allowed pointer-events-none flex items-center justify-center text-white transition-all duration-200 bg-primary rounded-full w-7 h-7 hover:bg-primary/80 focus:bg-primary/80"
                 >
                   <svg
                     className="w-4 h-4"
@@ -105,10 +105,9 @@ function Footer() {
 
               <li>
                 <a
-                  // aria-disabled="true"
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
+                  className="cursor-not-allowed pointer-events-none flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Blog{' '}
@@ -138,7 +137,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
+                  className="cursor-not-allowed pointer-events-none flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Support{' '}
@@ -149,7 +148,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
+                  className="cursor-not-allowed pointer-events-none flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Terms & Conditions{' '}
@@ -160,7 +159,7 @@ function Footer() {
                 <a
                   href="#"
                   title=""
-                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
+                  className="cursor-not-allowed pointer-events-none flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
                   {' '}
                   Privacy Policy{' '}
@@ -187,7 +186,7 @@ function Footer() {
                 </TextFieldLabel>
               </div>
 
-              <button className="mt-6 relative inline-flex items-center justify-center py-3.5 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent px-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl">
+              <button disabled className="mt-6 relative inline-flex items-center justify-center py-3.5 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent px-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl">
                 Subscribe
               </button>
             </form>
