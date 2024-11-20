@@ -10,6 +10,7 @@ import { cva } from 'cva';
 import { NavigationMenuContext } from './NavigationMenuContext';
 import isRouteActive from '~/core/generic/is-route-active';
 import Trans from '~/core/ui/Trans';
+import { Link as ScrollLink } from 'react-scroll';
 
 interface Link {
   path: string;
@@ -37,7 +38,7 @@ const NavigationMenuItem: React.FCC<{
 
   return (
     <li className={className}>
-      <Link
+      {/* <Link
         className={
           'transition-transform duration-500 justify-center lg:justify-start'
         }
@@ -46,7 +47,17 @@ const NavigationMenuItem: React.FCC<{
         shallow={shallow ?? active}
       >
         <Trans i18nKey={label} defaults={label} />
-      </Link>
+      </Link> */}
+      <ScrollLink
+        activeClass="active"
+        smooth={true}
+        duration={2000}
+        to={link.path}
+        title={label}
+        className="cursor-pointer inline-flex items-center justify-center hover:text-Black hover:-translate-y-1 text-base font-medium text-black transition-all duration-200 rounded-full "
+      >
+        {label}
+      </ScrollLink>
     </li>
   );
 };

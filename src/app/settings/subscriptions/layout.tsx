@@ -10,10 +10,10 @@ import AppHeader from '~/app/dashboard/components/AppHeader';
 import Container from '~/core/ui/Container';
 
 const getLinks = (organizationId: string) => [
-  {
-    path: '/settings/integrations',
-    label: 'common:profileSettingsTabLabel',
-  },
+  // {
+  //   path: '/settings/integrations',
+  //   label: 'common:profileSettingsTabLabel',
+  // },
   {
     path: '/settings/subscriptions',
     label: 'common:subscriptionSettingsTabLabel',

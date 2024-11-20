@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState, useFormStatus } from 'react-dom';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
 import classNames from 'clsx';
@@ -9,6 +9,7 @@ import classNames from 'clsx';
 import Button from '~/core/ui/Button';
 import isBrowser from '~/core/generic/is-browser';
 import { createCheckoutAction } from '~/lib/stripe/actions';
+import UserSessionContext from '~/core/session/contexts/user-session';
 
 const CheckoutRedirectButton: React.FCC<{
   hovered: boolean;
@@ -22,6 +23,8 @@ const CheckoutRedirectButton: React.FCC<{
     clientSecret: '',
   });
 
+  const { userSession } = useContext(UserSessionContext);
+
   useEffect(() => {
     if (state.clientSecret && onCheckoutCreated) {
       onCheckoutCreated(state.clientSecret);
@@ -30,7 +33,11 @@ const CheckoutRedirectButton: React.FCC<{
 
   return (
     <form data-cy={'checkout-form'} action={formAction}>
-      <CheckoutFormData userId={props.userId} priceId={props.stripePriceId} />
+      <CheckoutFormData
+        userId={props.userId}
+        email={userSession?.data?.email || ''}
+        priceId={props.stripePriceId}
+      />
 
       <SubmitCheckoutButton
         hovered={props.hovered}
@@ -77,12 +84,14 @@ function SubmitCheckoutButton(
 function CheckoutFormData(
   props: React.PropsWithChildren<{
     userId: Maybe<string>;
+    email: string;
     priceId: Maybe<string>;
   }>,
 ) {
   return (
     <>
       <input type="hidden" name={'userId'} defaultValue={props.userId} />
+      <input type="hidden" name={'email'} defaultValue={props.email} />
 
       <input type="hidden" name={'returnUrl'} defaultValue={getReturnUrl()} />
       <input type="hidden" name={'priceId'} defaultValue={props.priceId} />

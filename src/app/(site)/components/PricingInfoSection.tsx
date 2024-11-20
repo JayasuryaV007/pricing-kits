@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import React from 'react';
 
 function PricingInfoSection() {
   return (
-    <section className="py-12 bg-white sm:py-16 lg:py-0">
+    <section className="py-12 bg-gray-50 sm:py-16 lg:py-0" id="pricing">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-0">
         <div className="px-8 py-10 overflow-hidden lg:px-24 md:py-20 bg-gray-50 rounded-3xl">
           <div className="max-w-6xl mx-auto text-center">
@@ -80,14 +81,14 @@ function PricingInfoSection() {
             <div className="relative inline-flex group">
               <div className="absolute duration-1000 rotate-180 transitiona-all opacity-70 -inset-px rounded-xl blur-lg filter group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200"></div>
 
-              <a
-                href="#"
+              <Link
+                href="/auth/sign-in"
                 title=""
                 className="relative inline-flex items-center justify-center py-3.5 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent px-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl"
                 role="button"
               >
                 Get Started
-              </a>
+              </Link>
             </div>
           </div>
         </div>

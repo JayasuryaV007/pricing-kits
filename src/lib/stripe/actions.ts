@@ -41,20 +41,20 @@ export const createCheckoutAction = withSession(
 
     // Validate the body schema
     if (!bodyResult.success) {
-      console.log(bodyResult);
-      console.log(formData)
+      console.log(bodyResult.error);
+      console.log(formData);
       return redirectToErrorPage(`Invalid request body`);
     }
 
-    const { userId, priceId, returnUrl } = bodyResult.data;
-
+    const { userId, priceId, returnUrl, email } = bodyResult.data;
+    console.log(email);
     // create the Supabase client
-    const client = getSupabaseServerActionClient();
+    // const client = getSupabaseServerActionClient();
 
     // require the user to be logged in
-    const sessionResult = await requireSession(client);
+    // const sessionResult = await requireSession(client);
     // const userId = sessionResult.user.id;
-    const customerEmail = sessionResult.user.email;
+    const customerEmail = email;
 
     // const { error, data } = await getOrganizationByUid(client, organizationUid);
 
@@ -78,7 +78,7 @@ export const createCheckoutAction = withSession(
     }
 
     // check the user's role has access to the checkout
-    const canChangeBilling = await getUserCanAccessCheckout(client, {
+    const canChangeBilling = await getUserCanAccessCheckout({
       // organizationUid,
       userId,
     });
@@ -169,7 +169,7 @@ export const createCheckoutAction = withSession(
  * @param params
  */
 async function getUserCanAccessCheckout(
-  client: SupabaseClient,
+  // client: SupabaseClient,
   params: {
     // organizationUid: string;
     userId: string;
@@ -202,14 +202,14 @@ export const createBillingPortalSessionAction = withSession(
 
     const { customerId } = bodyResult.data;
 
-    const client = getSupabaseServerActionClient();
+    // const client = getSupabaseServerActionClient();
     const logger = getLogger();
-    const session = await requireSession(client);
+    // const session = await requireSession(client);
 
-    const userId = session.user.id;
+    const userId = customerId;
 
     // get permissions to see if the user can access the portal
-    const canAccess = await getUserCanAccessCustomerPortal(client, {
+    const canAccess = await getUserCanAccessCustomerPortal({
       customerId,
       userId,
     });
@@ -244,7 +244,7 @@ export const createBillingPortalSessionAction = withSession(
  * Stripe portal of an organization with customer ID {@link customerId}
  */
 async function getUserCanAccessCustomerPortal(
-  client: SupabaseClient,
+  // client: SupabaseClient,/
   params: {
     customerId: string;
     userId: string;
@@ -294,7 +294,8 @@ function getBillingPortalBodySchema() {
 
 function getCheckoutBodySchema() {
   return z.object({
-    userId: z.string().uuid(),
+    userId: z.string(),
+    email: z.string(),
     priceId: z.string().min(1),
     returnUrl: z.string().min(1),
   });

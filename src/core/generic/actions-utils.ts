@@ -15,9 +15,9 @@ export function withSession<Args extends any[], Response>(
   fn: (...params: Args) => Response,
 ) {
   return async (...params: Args) => {
-    const client = getSupabaseServerActionClient();
+    // const client = getSupabaseServerActionClient();
 
-    await requireSession(client);
+    // await requireSession(client);
 
     return fn(...params);
   };

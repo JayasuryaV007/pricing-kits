@@ -22,39 +22,41 @@ const SiteHeader = () => {
   const canSwitchTheme = configuration.features.enableThemeSwitcher;
   console.log('session', userSession);
   return (
-    <Container>
-      <div className="flex py-1.5 px-1 items-center border-b border-gray-50 dark:border-dark-800/70 justify-between">
-        <div className={'w-4/12'}>
-          <Logo />
-        </div>
+    <div className="bg-white">
+      <Container>
+        <div className="flex py-1.5 px-1 items-center border-b border-gray-50 dark:border-dark-800/70 justify-between">
+          <div className={'w-4/12'}>
+            <Logo />
+          </div>
 
-        <div className={'w-4/12 justify-center hidden lg:flex'}>
-          <SiteNavigation />
-        </div>
+          <div className={'w-4/12 justify-center hidden lg:flex'}>
+            {/* <SiteNavigation /> */}
+          </div>
 
-        <div className={'flex flex-1 items-center justify-end space-x-4'}>
-          <div className={'items-center flex'}>
-            <If condition={canSwitchTheme}>
-              {/* <DarkModeToggle /> */}
-              <></>
+          <div className={'flex flex-1 items-center justify-end space-x-4'}>
+            <div className={'items-center flex'}>
+              <If condition={canSwitchTheme}>
+                {/* <DarkModeToggle /> */}
+                <></>
+              </If>
+            </div>
+
+            <If condition={userSession} fallback={<AuthButtons />}>
+              {(session) => (
+                <ProfileDropdown
+                  userSession={session}
+                  signOutRequested={signOut}
+                />
+              )}
             </If>
-          </div>
 
-          <If condition={userSession} fallback={<AuthButtons />}>
-            {(session) => (
-              <ProfileDropdown
-                userSession={session}
-                signOutRequested={signOut}
-              />
-            )}
-          </If>
-
-          <div className={'flex lg:hidden'}>
-            <SiteNavigation />
+            <div className={'flex lg:hidden'}>
+              <SiteNavigation />
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

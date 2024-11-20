@@ -16,26 +16,22 @@ const links = {
     label: 'Sign In',
     path: '/auth/sign-in',
   },
-  // Blog: {
-  //   label: 'Blog',
-  //   path: '/blog',
-  // },
-  // Docs: {
-  //   label: 'Documentation',
-  //   path: '/docs',
-  // },
-  // Images: {
-  //   label: 'Images',
-  //   path: '/images',
-  // },
-  // Pricing: {
-  //   label: 'Pricing',
-  //   path: '/pricing',
-  // },
-  // FAQ: {
-  //   label: 'FAQ',
-  //   path: '/faq',
-  // },
+  Features: {
+    label: 'Features',
+    path: 'feature',
+  },
+  How_It_Works: {
+    label: 'How It Works',
+    path: 'how_it_works',
+  },
+  Pricing: {
+    label: 'Pricing',
+    path: 'pricing',
+  },
+  Why_Us: {
+    label: 'Why Us',
+    path: 'why_us',
+  },
 };
 
 const SiteNavigation = () => {
@@ -50,10 +46,10 @@ const SiteNavigation = () => {
             link={links.SignIn}
           />
 
-          {/* <NavigationMenuItem className={className} link={links.Blog} /> */}
-          {/* <NavigationMenuItem className={className} link={links.Images} /> */}
-          {/* <NavigationMenuItem className={className} link={links.Pricing} /> */}
-          {/* <NavigationMenuItem className={className} link={links.FAQ} /> */}
+          <NavigationMenuItem className={className} link={links.Features} />
+          <NavigationMenuItem className={className} link={links.How_It_Works} />
+          <NavigationMenuItem className={className} link={links.Pricing} />
+          <NavigationMenuItem className={className} link={links.Why_Us} />
         </NavigationMenu>
       </div>
 

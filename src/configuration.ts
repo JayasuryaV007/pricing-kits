@@ -74,26 +74,20 @@ const configuration = {
     displayMode: StripeCheckoutDisplayMode.Popup,
     products: [
       {
-        name: 'Basic',
+        name: 'Starter',
         description: 'Description of your Basic plan',
         badge: `Popular`,
         features: [
-          'Basic Plan',
-          // 'Up to 20 users',
-          // '1GB for each user',
-          // 'Chat Support',
+          'Up to 3 Pricing Pages',
+          'Unlimited Tooltips',
+          'Sales Analytics (Coming Soon)',
         ],
         plans: [
           {
             name: 'Monthly',
-            price: '$9',
+            price: '$7',
             stripePriceId: 'price_1PiV65Ddqcz8yRjh8JtZuf07',
-          },
-          {
-            name: 'Yearly',
-            price: '$90',
-            stripePriceId: 'price_1PiV65Ddqcz8yRjh1fuk5xX1',
-          },
+          }
         ],
       },
       {
@@ -102,44 +96,38 @@ const configuration = {
         recommended: true,
         description: 'Description of your Pro plan',
         features: [
-          'Advanced Plan',
-          // 'Up to 50 users',
-          // '5GB for each user',
-          // 'Chat and Phone Support',
+          'Unlimited Pricing Pages',
+          'Unlimited Tooltips',
+          'Sales Analytics (Coming Soon)',
         ],
         plans: [
           {
             name: 'Monthly',
-            price: '$29',
+            price: '$19',
             stripePriceId: 'price_1PiV9VDdqcz8yRjhJPaBkb1c',
-          },
-          {
-            name: 'Yearly',
-            price: '$200',
-            stripePriceId: 'price_1PiV9VDdqcz8yRjhFH1N0V2N',
-          },
+          }
         ],
       },
-      {
-        name: 'Premium',
-        description: 'Description of your Premium plan',
-        badge: ``,
-        features: [
-          'Advanced Plan',
-          // 'Unlimited users',
-          // '50GB for each user',
-          // 'Account Manager',
-        ],
-        plans: [
-          {
-            name: '',
-            price: 'Contact us',
-            stripePriceId: '',
-            label: `Contact us`,
-            // href: `/contact`,
-          },
-        ],
-      },
+      // {
+      //   name: 'Premium',
+      //   description: 'Description of your Premium plan',
+      //   badge: ``,
+      //   features: [
+      //     'Advanced Plan',
+      //     // 'Unlimited users',
+      //     // '50GB for each user',
+      //     // 'Account Manager',
+      //   ],
+      //   plans: [
+      //     {
+      //       name: '',
+      //       price: 'Contact us',
+      //       stripePriceId: '',
+      //       label: `Contact us`,
+      //       // href: `/contact`,
+      //     },
+      //   ],
+      // },
     ],
   },
   openai: {

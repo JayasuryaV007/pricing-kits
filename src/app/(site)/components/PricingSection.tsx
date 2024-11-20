@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 function PricingSection() {
@@ -13,14 +14,14 @@ function PricingSection() {
             professional website, landing page or admin panel for your SaaS.
           </p> */}
           <div className="flex flex-col items-center mt-8 space-y-6 md:mt-12">
-            <a
-              href="#"
+            <Link
+              href="/auth/sign-in"
               title=""
               className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white transition-all duration-200 bg-primary border border-transparent rounded-full shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               role="button"
             >
               Start Free Trial
-            </a>
+            </Link>
 
             {/* <p className="text-sm font-normal text-gray-500">
               No credit card required

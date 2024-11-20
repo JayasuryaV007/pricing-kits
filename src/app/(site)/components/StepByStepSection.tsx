@@ -52,13 +52,15 @@ function StepItem({ step, index, isLastStep, nextItemPosition }: any) {
       transition={{ duration: 0.6, delay: index * 0.3 }}
       className="relative"
     >
-      <div className="flex flex-col md:flex-row gap-4 px-4 md:px-0">
+      <div
+        className={`flex flex-col md:flex-row gap-4 px-4 md:px-0 ${index !== 5 && 'h-[60vh]'}`}
+      >
         {/* Left content */}
         <div className="w-full md:w-1/2 order-2 md:order-1">
           {index % 2 === 0 ? (
             <div className="relative w-full aspect-video ml-10 md:ml-0">
               <Image
-                src="/assets/images/dummy.png"
+                src={`/assets/images/featured-img-0${index + 1}.png`}
                 fill
                 className="object-cover rounded-lg"
                 alt=""
@@ -76,7 +78,7 @@ function StepItem({ step, index, isLastStep, nextItemPosition }: any) {
               </div>
               <div className="relative w-full aspect-video ml-10 md:ml-0 md:hidden">
                 <Image
-                  src="/assets/images/dummy.png"
+                  src={`/assets/images/featured-img-0${index + 1}.png`}
                   fill
                   className="object-cover rounded-lg"
                   alt=""
@@ -120,7 +122,7 @@ function StepItem({ step, index, isLastStep, nextItemPosition }: any) {
                 <>
                   <div className="relative w-full aspect-video hidden md:block">
                     <Image
-                      src="/assets/images/dummy.png"
+                      src={`/assets/images/featured-img-0${index + 1}.png`}
                       fill
                       className="object-cover rounded-lg"
                       alt=""
@@ -170,13 +172,16 @@ export default function SquadWorks() {
       className="max-w-6xl mx-auto mt-8 md:mt-16 space-y-16 md:space-y-24"
     >
       {OurProcessSteps.map((step, index) => (
-        <StepItem
-          key={index}
-          step={step}
-          index={index}
-          isLastStep={index === OurProcessSteps.length - 1}
-          nextItemPosition={numberPositions[index + 1]}
-        />
+        <>
+          {index === 0 && <div className="md:mt-20"></div>}
+          <StepItem
+            key={index}
+            step={step}
+            index={index}
+            isLastStep={index === OurProcessSteps.length - 1}
+            nextItemPosition={numberPositions[index + 1]}
+          />
+        </>
       ))}
     </ul>
   );
