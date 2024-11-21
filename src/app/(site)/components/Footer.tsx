@@ -156,14 +156,13 @@ function Footer() {
               </li>
 
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/privacy-policy"
                   title=""
-                  className="cursor-not-allowed pointer-events-none flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
-                  {' '}
-                  Privacy Policy{' '}
-                </a>
+                  Privacy Policy
+                </Link>
               </li>
             </ul>
           </div>
@@ -186,7 +185,10 @@ function Footer() {
                 </TextFieldLabel>
               </div>
 
-              <button disabled className="mt-6 relative inline-flex items-center justify-center py-3.5 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent px-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl">
+              <button
+                disabled
+                className="mt-6 relative inline-flex items-center justify-center py-3.5 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent px-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl"
+              >
                 Subscribe
               </button>
             </form>

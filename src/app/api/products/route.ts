@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '~/lib/mongodb/client';
 import { Products } from '~/types/products';
 import Product from '~/models/Products';
+import Quota from '~/models/Quota';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,6 +14,11 @@ export async function POST(request: NextRequest) {
     }
 
     const product = await Product.create(body);
+    await Quota.findOneAndUpdate(
+      { user_id: body.user_id },
+      { $inc: { page_count: 1 } },
+      { upsert: true, new: true }
+    );
 
     return NextResponse.json({ data: product }, { status: 200 });
   } catch (error) {
