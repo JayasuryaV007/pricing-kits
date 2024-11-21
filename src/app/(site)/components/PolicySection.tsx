@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionOne from './policy/sectionOne';
+import SectionOne from './policy/SectionOne';
 import SectionTwo from './policy/SectionTwo';
 import SectionThree from './policy/SectionThree';
 import SectionFour from './policy/SectionFour';
