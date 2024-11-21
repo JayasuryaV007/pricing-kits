@@ -145,14 +145,13 @@ function Footer() {
               </li>
 
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/terms-and-conditions"
                   title=""
-                  className="cursor-not-allowed pointer-events-none flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
+                  className="flex text-base text-black transition-all duration-200 hover:text-primary/80 focus:text-primary/80"
                 >
-                  {' '}
-                  Terms & Conditions{' '}
-                </a>
+                  Terms & Conditions
+                </Link>
               </li>
 
               <li>

@@ -22,7 +22,7 @@ const PolicySection = () => {
               Last Updated: November 21, 2024
             </p>
 
-            <div className="mt-5">
+            <div className="mt-5 text-justify">
               <p className="text-base font-normal leading-7 text-gray-700 font-pj">
                 This Privacy Policy explains how PricingFlows ("We," "Us,"
                 "Our") collects, uses, discloses, and protects your personal
