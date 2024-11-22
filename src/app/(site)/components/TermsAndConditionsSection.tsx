@@ -15,7 +15,7 @@ const TermsAndConditionsSection = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto xl:max-w-4xl">
             <p className="text-xl text-center font-bold tracking-widest text-gray-900 uppercase font-pj">
-              Terms and Conditions for PricingFlows
+              Terms and Conditions
             </p>
             <p className="text-sm font-normal text-gray-600 mt-7 font-pj">
               Last Updated: November 21, 2024
