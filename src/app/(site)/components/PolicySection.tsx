@@ -28,7 +28,7 @@ const PolicySection = () => {
                 "Our") collects, uses, discloses, and protects your personal
                 data when you access or use our website
                 <a href="#" className="ml-1 text-primary hover:underline">
-                  https://pricing-kits.vercel.app/
+                  https://www.pricingflows.com/
                 </a>{' '}
                 and SaaS product, PricingFlows. By using our website or
                 services, you agree to the collection and use of your

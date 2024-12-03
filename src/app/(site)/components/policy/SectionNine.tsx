@@ -21,7 +21,7 @@ const SectionNine = () => {
         <li>
           Website:
           <a href="#" className="ml-1 text-primary hover:underline">
-            https://pricingflow.com/
+            https://www.pricingflows.com/
           </a>
         </li>
       </ul>

@@ -106,7 +106,7 @@ function UsersNeedSection() {
 
           <div className="flex items-end justify-center mt-10">
             <p className="text-lg font-bold text-gray-400 font-pj">$</p>
-            <p className="text-6xl font-bold text-gray-900 font-pj">10.99</p>
+            <p className="text-6xl font-bold text-gray-900 font-pj">7</p>
             <p className="text-lg font-bold text-gray-400 font-pj">/month</p>
           </div>
 
@@ -116,12 +116,8 @@ function UsersNeedSection() {
             className="relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-white transition-all duration-200 bg-primary border border-transparent mt-9 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 font-pj hover:bg-opacity-90 rounded-xl"
             role="button"
           >
-            Get started for $10.99 only
+            Get started for $7 only
           </Link>
-
-          <p className="mt-4 text-sm font-normal text-gray-600 font-pj">
-            30 days money back guarantee
-          </p>
         </div>
       </div>
     </section>

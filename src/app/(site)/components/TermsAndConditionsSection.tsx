@@ -26,7 +26,7 @@ const TermsAndConditionsSection = () => {
                 Please read these Terms and Conditions ("Terms", "Terms and
                 Conditions") carefully before using the{' '}
                 <a href="#" className="ml-1 text-primary hover:underline">
-                  https://pricing-kits.vercel.app/
+                  https://www.pricingflows.com
                 </a>{' '}
                 website (the "Service") operated by PricingFlows ("us", "we", or
                 "our").
