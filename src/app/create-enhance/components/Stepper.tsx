@@ -119,7 +119,7 @@ const StepperComponent = () => {
   return (
     <>
       <div className="lg:hidden block">
-        <AppHeader title="Pricing Kits"></AppHeader>
+        <AppHeader title="Pricing Flows"></AppHeader>
       </div>
       <div className="w-full mx-auto md:p-6 md:mt-20">
         <div className="my-8 ">

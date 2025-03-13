@@ -51,10 +51,10 @@ export default async function createStripeCheckout(
       },
     };
 
-  const urls = getUrls({
-    embedded: params.embedded,
-    returnUrl: params.returnUrl,
-  });
+  // const urls = getUrls({
+  //   embedded: params.embedded,
+  //   returnUrl: params.returnUrl,
+  // });
 
   const uiMode = params.embedded ? 'embedded' : 'hosted';
 
@@ -66,15 +66,45 @@ export default async function createStripeCheckout(
         customer_email: params.customerEmail,
       };
 
-  return stripe.checkout.sessions.create({
-    mode,
-    ui_mode: uiMode,
-    line_items: [lineItem],
-    client_reference_id: clientReferenceId.toString(),
-    subscription_data: subscriptionData,
-    ...customerData,
-    ...urls,
-  });
+  const checkoutParams = {
+    mode: 'subscription' as const,
+    payment_method_types: ['card' as const],
+    line_items: [
+      {
+        price: params.priceId,
+        quantity: 1,
+      },
+    ],
+    success_url: `${params.returnUrl}/return?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${params.returnUrl}/return?canceled=true`,
+    customer_email: params.customerEmail,
+    metadata: {
+      userId: params.userId,
+    },
+    subscription_data: {
+      metadata: {
+        userId: params.userId,
+      },
+    },
+    ui_mode: 'hosted' as const,
+    billing_address_collection: 'auto' as const,
+    allow_promotion_codes: true,
+  };
+
+  const session = await stripe.checkout.sessions.create(checkoutParams);
+  console.log('session', session);
+
+  return session;
+
+  // return stripe.checkout.sessions.create({
+  //   mode,
+  //   ui_mode: uiMode,
+  //   line_items: [lineItem],
+  //   client_reference_id: clientReferenceId.toString(),
+  //   subscription_data: subscriptionData,
+  //   ...customerData,
+  //   ...urls,
+  // });
 }
 
 function getUrls(params: { returnUrl: string; embedded?: boolean }) {

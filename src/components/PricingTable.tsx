@@ -15,6 +15,7 @@ interface CheckoutButtonProps {
   readonly stripePriceId?: string;
   readonly recommended?: boolean;
   hovered: boolean;
+  children?: React.ReactNode;
 }
 
 interface PricingItemProps {
@@ -50,6 +51,7 @@ const STRIPE_PLANS = STRIPE_PRODUCTS.reduce<string[]>((acc, product) => {
 function PricingTable(
   props: React.PropsWithChildren<{
     CheckoutButton?: React.ComponentType<CheckoutButtonProps>;
+    currentPlanId?: string;
   }>,
 ) {
   const [planVariant, setPlanVariant] = useState<string>(STRIPE_PLANS[0]);
@@ -75,6 +77,9 @@ function PricingTable(
             product.plans.find((item) => item.name === planVariant) ??
             product.plans[0];
 
+          const stripePriceId = product.plans[0].stripePriceId;
+          const isCurrentPlan = props.currentPlanId === stripePriceId;
+
           return (
             <PricingItem
               selectable
@@ -82,6 +87,7 @@ function PricingTable(
               plan={plan}
               product={product}
               CheckoutButton={props.CheckoutButton}
+              isCurrentPlan={isCurrentPlan}
             />
           );
         })}
@@ -100,6 +106,7 @@ function PricingItem(
   props: React.PropsWithChildren<
     PricingItemProps & {
       CheckoutButton?: React.ComponentType<CheckoutButtonProps>;
+      isCurrentPlan?: boolean;
     }
   >,
 ) {
@@ -171,7 +178,28 @@ function PricingItem(
         <FeaturesList features={props.product.features} />
       </div>
 
-      <If condition={props.selectable}>
+      <div className="px-0 pb-0">
+        {props.isCurrentPlan ? (
+          <div className="w-full px-4 py-3 text-sm text-center bg-gray-100 text-gray-500 rounded-lg">
+            Current Plan
+          </div>
+        ) : props.CheckoutButton ? (
+          <props.CheckoutButton
+            stripePriceId={props.plan.stripePriceId}
+            recommended={recommended}
+            hovered={hovered}
+          >
+            {props.isCurrentPlan ? 'Current Plan' : 'Select Plan'}
+          </props.CheckoutButton>
+        ) : (
+          <DefaultCheckoutButton
+            plan={props.plan}
+            recommended={recommended}
+            hovered={hovered}
+          />
+        )}
+      </div>
+      {/*<If condition={props.selectable}>
         <If
           condition={props.plan.stripePriceId && props.CheckoutButton}
           fallback={
@@ -190,7 +218,7 @@ function PricingItem(
             />
           )}
         </If>
-      </If>
+      </If> */}
     </div>
   );
 }
@@ -267,22 +295,24 @@ function PlansSwitcher(
         });
 
         return (
-          <Button
-            key={plan}
-            variant={'outline'}
-            className={className}
-            onClick={() => props.setPlan(plan)}
+          // <Button
+          //   key={plan}
+          //   variant={'outline'}
+          //   className={className}
+          //   onClick={() => props.setPlan(plan)}
+          // >
+          <span
+            className={'flex space-x-1 items-center font-bold mt-4 text-lg'}
           >
-            <span className={'flex space-x-1 items-center'}>
-              <If condition={selected}>
+            {/* <If condition={selected}>
                 <CheckCircleIcon className={'h-4'} />
-              </If>
-
-              <span>
-                <Trans i18nKey={`common:plans.${plan}`} defaults={plan} />
-              </span>
-            </span>
-          </Button>
+              </If> */}
+            {/* <span> */}
+            Available Plans
+            {/* <Trans i18nKey={`common:plans.${plan}`} defaults={plan} /> */}
+            {/* </span> */}
+          </span>
+          // </Button>
         );
       })}
     </div>

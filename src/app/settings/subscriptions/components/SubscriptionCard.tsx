@@ -15,69 +15,89 @@ import configuration from '~/configuration';
 const SubscriptionCard: React.FC<{
   subscription: any;
 }> = ({ subscription }) => {
-  const details = useSubscriptionDetails(subscription.priceId);
-  const cancelAtPeriodEnd = subscription.cancelAtPeriodEnd;
-  const isActive = subscription.status === 'active';
-  const language = getI18n().language;
+  // const details = useSubscriptionDetails(subscription.priceId);
+  // const cancelAtPeriodEnd = subscription.cancelAtPeriodEnd;
+  // const isActive = subscription.status === 'active';
+  // const language = getI18n().language;
 
-  const dates = useMemo(() => {
-    const endDate = new Date(subscription.periodEndsAt);
-    const trialEndDate =
-      subscription.trialEndsAt && new Date(subscription.trialEndsAt);
+  // const dates = useMemo(() => {
+  //   const endDate = new Date(subscription.periodEndsAt);
+  //   const trialEndDate =
+  //     subscription.trialEndsAt && new Date(subscription.trialEndsAt);
 
-    return {
-      endDate: endDate.toLocaleDateString(language),
-      trialEndDate: trialEndDate
-        ? trialEndDate.toLocaleDateString(language)
-        : null,
-    };
-  }, [language, subscription]);
+  //   return {
+  //     endDate: endDate.toLocaleDateString(language),
+  //     trialEndDate: trialEndDate
+  //       ? trialEndDate.toLocaleDateString(language)
+  //       : null,
+  //   };
+  // }, [language, subscription]);
 
-  if (!details) {
-    return null;
-  }
+  const plan = subscription.plans[0];
+  const isActive =
+    subscription.status === 'active' || subscription.status === 'trialing';
+  const endDate = new Date(subscription.current_period_ends_at);
+
+  // if (!details) {
+  //   return null;
+  // }
 
   return (
     <div
-      className={'flex space-x-2'}
+      className={'space-x-0'}
       data-cy={'subscription-card'}
       data-cy-status={subscription.status}
     >
-      <div className={'flex flex-col space-y-4 w-9/12'}>
+      <div className={'flex flex-col space-y-4'}>
         <div className={'flex flex-col space-y-1'}>
-          <div className={'flex items-center space-x-4'}>
+          <Heading type={4}>
+            <span data-cy={'current-plan'}>Current Plan</span>
+          </Heading>
+          <div className={'flex items-center w-full'}>
             <Heading type={4}>
-              <span data-cy={'subscription-name'}>{details.product.name}</span>
+              <span data-cy={'subscription-name'}>{plan.name}</span>
             </Heading>
 
             <div>
               <SubscriptionStatusBadge subscription={subscription} />
             </div>
+            <div className={'ml-auto'}>
+              <span className={'flex items-center justify-end space-x-1'}>
+                <PricingTable.Price>${plan.price}</PricingTable.Price>
+
+                <span className={'lowercase text-gray-500 dark:text-gray-400'}>
+                  {/* /{plan.name} */}
+                  /monthly
+                </span>
+              </span>
+            </div>
           </div>
 
-          <span className={'text-gray-500 dark:text-gray-400 text-sm'}>
+          {/* <span className={'text-gray-500 dark:text-gray-400 text-sm'}>
             {details.product.description}
-          </span>
+          </span> */}
         </div>
 
-        <If condition={isActive}>
+        {/* <If condition={isActive}>
           <RenewStatusDescription
             dates={dates}
             cancelAtPeriodEnd={cancelAtPeriodEnd}
           />
-        </If>
+        </If> */}
 
-        <SubscriptionStatusAlert subscription={subscription} values={dates} />
+        {/* <SubscriptionStatusAlert subscription={subscription} values={dates} /> */}
       </div>
 
-      <div className={'w-3/12'}>
-        <span className={'flex items-center justify-end space-x-1'}>
-          <PricingTable.Price>{details.plan.price}</PricingTable.Price>
-
-          <span className={'lowercase text-gray-500 dark:text-gray-400'}>
-            /{details.plan.name}
-          </span>
-        </span>
+      <div className={'flex items-center'}>
+        <div className={'text-sm text-gray-500'}>Plan Limits:</div>
+        {/* <div className={'grid grid-cols-3 gap-4'}> */}
+        <div className="flex ml-2 items-center">
+          <div className={'font-normal text-sm'}>
+            {`${plan.max_pages === -1 ? 'Unlimited' : plan.max_pages}`}
+          </div>
+          <div className={'text-sm text-gray-500 ml-1'}> Pricing Websites</div>
+        </div>
+        {/* </div> */}
       </div>
     </div>
   );

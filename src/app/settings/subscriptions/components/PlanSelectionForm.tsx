@@ -29,7 +29,8 @@ const EmbeddedStripeCheckout = dynamic(
 const PlanSelectionForm: React.FCC<{
   user: Maybe<UserData>;
   customerId: Maybe<string>;
-}> = ({ user, customerId }) => {
+  currentPlan?: string;
+}> = ({ user, customerId, currentPlan }) => {
   const [clientSecret, setClientSecret] = useState<string>();
   const [retry, setRetry] = useState(0);
 
@@ -45,6 +46,7 @@ const PlanSelectionForm: React.FCC<{
 
       <div className={'flex w-full flex-col space-y-8 justify-center'}>
         <PricingTable
+          currentPlanId={currentPlan}
           CheckoutButton={(props) => {
             return (
               <ErrorBoundary

@@ -34,7 +34,7 @@ async function SettingsLayout({
     <>
       <Container>
         <AppHeader
-          title={<Trans i18nKey={'common:settingsTabLabel'} />}
+          title={<Trans i18nKey={'Pricing Flows'} />}
           description={<Trans i18nKey={'common:settingsTabDescription'} />}
         />
 
@@ -42,7 +42,7 @@ async function SettingsLayout({
           <NavigationMenu bordered>
             {links.map((link) => (
               <NavigationItem
-                className={'flex-1 lg:flex-none'}
+                className={'flex-1 lg:flex-none mt-3 md:ml-8 hidden md:block'}
                 link={link}
                 key={link.path}
               />

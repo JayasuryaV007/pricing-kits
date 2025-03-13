@@ -44,7 +44,7 @@ const DashboardPage = ({}: {}) => {
     <>
       <div className="lg:hidden block">
         {' '}
-        <AppHeader title="Pricing Kits"></AppHeader>
+        <AppHeader title="Pricing Flows"></AppHeader>
       </div>
       <div
         className={'flex flex-col space-y-6 pb-8 max-w-7xl mx-auto md:mt-20'}

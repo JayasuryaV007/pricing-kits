@@ -20,6 +20,7 @@ import {
 } from '~/lib/subscriptions/mutations';
 
 import getSupabaseRouteHandlerClient from '~/core/supabase/route-handler-client';
+import Subscriptions from '~/models/Subscriptions';
 
 const STRIPE_SIGNATURE_HEADER = 'stripe-signature';
 
@@ -29,29 +30,29 @@ const webhookSecretKey = process.env.STRIPE_WEBHOOK_SECRET as string;
  * @description Handle the webhooks from Stripe related to checkouts
  */
 export async function POST(request: Request) {
-  const logger = getLogger();
-  const signature = headers().get(STRIPE_SIGNATURE_HEADER);
+  // const logger = getLogger();
+  const signature = headers().get(STRIPE_SIGNATURE_HEADER)!;
 
-  logger.info(`[Stripe] Received Stripe Webhook`);
+  // logger.info(`[Stripe] Received Stripe Webhook`);
 
-  if (!webhookSecretKey) {
-    return throwInternalServerErrorException(
-      `The variable STRIPE_WEBHOOK_SECRET is unset. Please add the STRIPE_WEBHOOK_SECRET environment variable`,
-    );
-  }
+  // if (!webhookSecretKey) {
+  //   return throwInternalServerErrorException(
+  //     `The variable STRIPE_WEBHOOK_SECRET is unset. Please add the STRIPE_WEBHOOK_SECRET environment variable`,
+  //   );
+  // }
 
   // verify signature header is not missing
-  if (!signature) {
-    return throwBadRequestException();
-  }
+  // if (!signature) {
+  //   return throwBadRequestException();
+  // }
 
   const rawBody = await request.text();
   const stripe = await getStripeInstance();
 
   // create an Admin client to write to the subscriptions table
-  const client = getSupabaseRouteHandlerClient({
-    admin: true,
-  });
+  // const client = getSupabaseRouteHandlerClient({
+  //   admin: true,
+  // });
 
   try {
     // build the event from the raw body and signature using Stripe
@@ -61,30 +62,53 @@ export async function POST(request: Request) {
       webhookSecretKey,
     );
 
-    logger.info(
-      {
-        type: event.type,
-      },
-      `[Stripe] Processing Stripe Webhook...`,
-    );
-
+    console.log('event.type', event.type);
     switch (event.type) {
       case StripeWebhooks.Completed: {
         const session = event.data.object as Stripe.Checkout.Session;
         const subscriptionId = session.subscription as string;
 
+        console.log('sessions------', session.metadata);
+        const userId = session.metadata?.userId;
+
+        if (!userId) {
+          console.error('No userId found in session metadata');
+          throw new Error('No userId found in session metadata');
+        }
+
         const subscription =
           await stripe.subscriptions.retrieve(subscriptionId);
 
-        await onCheckoutCompleted(client, session, subscription);
+        console.log('Subscription-------', subscription);
 
+        // await onCheckoutCompleted(client, session, subscription);
+        await Subscriptions.create({
+          subscription_id: subscription.id,
+          user_id: userId,
+          price_id: subscription.items.data[0].price.id,
+          stripe_customer_id: session.customer as string,
+          status: subscription.status as
+            | 'trialing'
+            | 'active'
+            | 'past_due'
+            | 'canceled'
+            | 'incomplete'
+            | 'incomplete_expired',
+          period_starts_at: new Date(
+            subscription.current_period_start * 1000,
+          ).toISOString(),
+          period_ends_at: new Date(
+            subscription.current_period_end * 1000,
+          ).toISOString(),
+          cancel_at_period_end: subscription.cancel_at_period_end,
+        });
         break;
       }
 
       case StripeWebhooks.SubscriptionDeleted: {
         const subscription = event.data.object as Stripe.Subscription;
 
-        await deleteSubscription(client, subscription.id);
+        // await deleteSubscription(client, subscription.id);
 
         break;
       }
@@ -92,22 +116,18 @@ export async function POST(request: Request) {
       case StripeWebhooks.SubscriptionUpdated: {
         const subscription = event.data.object as Stripe.Subscription;
 
-        await updateSubscriptionById(client, subscription);
+        // await updateSubscriptionById(client, subscription);
 
         break;
       }
     }
 
     return NextResponse.json({ success: true });
-  } catch (error) {
-    logger.error(
-      {
-        error,
-      },
-      `[Stripe] Webhook handling failed`,
-    );
+  } catch (error: any) {
+    console.error('Webhook error:', error);
 
-    return throwInternalServerErrorException();
+    // return throwInternalServerErrorException();
+    return new NextResponse('Webhook Error' + error.message, { status: 500 });
   }
 }
 
@@ -116,35 +136,9 @@ export async function POST(request: Request) {
  * subscription is only activated if the order was paid successfully.
  * Otherwise, we have to wait for a further webhook
  */
-async function onCheckoutCompleted(
-  client: SupabaseClient,
-  session: Stripe.Checkout.Session,
-  subscription: Stripe.Subscription,
-) {
-  const organizationUid = getOrganizationUidFromClientReference(session);
-  const customerId = session.customer as string;
 
-  // build organization subscription and set on the organization document
-  // we add just enough data in the DB, so we do not query
-  // Stripe for every bit of data
-  // if you need your DB record to contain further data
-  // add it to {@link buildOrganizationSubscription}
-  // const { error, data } = await addSubscription(client, subscription);
-
-  // if (error) {
-  //   return Promise.reject(
-  //     `Failed to add subscription to the database: ${error}`,
-  //   );
-  // }
-}
-
-/**
- * @name getOrganizationUidFromClientReference
- * @description Get the organization UUID from the client reference ID
- * @param session
- */
-function getOrganizationUidFromClientReference(
-  session: Stripe.Checkout.Session,
-) {
-  return session.client_reference_id as string;
-}
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

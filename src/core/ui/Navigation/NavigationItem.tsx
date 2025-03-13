@@ -56,7 +56,7 @@ const NavigationMenuItem: React.FCC<{
         title={label}
         className="cursor-pointer inline-flex items-center justify-center hover:text-Black hover:-translate-y-1 text-base font-medium text-black transition-all duration-200 rounded-full "
       >
-        {label}
+        <Trans i18nKey={label} defaults={label} />
       </ScrollLink>
     </li>
   );

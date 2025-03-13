@@ -4,4 +4,5 @@ export interface PlanDocument extends mongoose.Document {
   name: String;
   max_pages: Number;
   price: Number;
+  price_id: string;
 }

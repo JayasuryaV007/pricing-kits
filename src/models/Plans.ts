@@ -14,6 +14,9 @@ const PlanSchema = new Schema<PlanDocument>({
     type: Number,
     required: true,
   },
+  price_id: {
+    type: String,
+  },
 });
 
 const Plans: Model<PlanDocument> =

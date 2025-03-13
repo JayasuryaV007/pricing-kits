@@ -1,6 +1,6 @@
-# Pricing Kits - Local Setup
+# Pricing Flows - Local Setup
 
-This repository contains the source code for the Pricing Kits AI web application built with Next.js.
+This repository contains the source code for the Pricing Flows AI web application built with Next.js.
 
 ## Prerequisites
 

@@ -10,8 +10,8 @@ enum Themes {
 
 const configuration = {
   site: {
-    name: 'Pricing Kits',
-    description: 'Pricing Kits',
+    name: 'Pricing Flows',
+    description: 'Pricing Flows',
     themeColor: '#ffffff',
     themeColorDark: '#0a0a0a',
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
@@ -70,7 +70,7 @@ const configuration = {
     dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   },
   stripe: {
-    embedded: true,
+    embedded: false,
     displayMode: StripeCheckoutDisplayMode.Popup,
     products: [
       {
@@ -86,8 +86,8 @@ const configuration = {
           {
             name: 'Monthly',
             price: '$7',
-            stripePriceId: 'price_1PiV65Ddqcz8yRjh8JtZuf07',
-          }
+            stripePriceId: 'price_1QWk1UDdqcz8yRjhJTdXzufi',
+          },
         ],
       },
       {
@@ -104,8 +104,8 @@ const configuration = {
           {
             name: 'Monthly',
             price: '$19',
-            stripePriceId: 'price_1PiV9VDdqcz8yRjhJPaBkb1c',
-          }
+            stripePriceId: 'price_1QWk27Ddqcz8yRjhFLnsUl4N',
+          },
         ],
       },
       // {
